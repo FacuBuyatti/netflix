@@ -140,7 +140,7 @@ CREATE TABLE contenido_generos (
 A partir de ahí comenzamos cargando los datos a la base con el siguiente comando:
 
 ```sql
-LOAD DATA LOCAL INFILE 'C:\\ruta\\archivo.csv' 
+LOAD DATA LOCAL INFILE 'C:\Users\facun\OneDrive\Escritorio\Proyecto_Netflix\(nombreArchivo).csv' 
 INTO TABLE contenido
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
