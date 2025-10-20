@@ -339,7 +339,6 @@ LIMIT 10;
 
 ## Tecnologías Utilizadas
 
-- MySQL / MariaDB
 - MySQL Workbench
 - CSV
 
