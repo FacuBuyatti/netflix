@@ -9,7 +9,7 @@ Este proyecto se realizó con la intención de aprender normalización de datos 
 Cloná el siguiente repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/streaming-database
+https://github.com/FacuBuyatti/netflix.git
 ```
 
 
