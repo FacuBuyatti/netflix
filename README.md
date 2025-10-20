@@ -1,7 +1,13 @@
 # Base de datos de Streaming
 
 ## Descripción
-Este proyecto se realizó con la intención de aprender normalización de datos en formato .csv para cargarlos en un motor de base de datos, yo utilize mysql
+Este proyecto se realizó con el objetivo de aprender el proceso de normalización de datos a partir de archivos en formato .csv, para luego cargarlos en un motor de base de datos —en este caso, MySQL— y realizar consultas y modificaciones según las necesidades del análisis.
+
+Con este propósito, utilicé un dataset de Netflix, que contiene información sobre películas y series, incluyendo sus directores, actores, países, géneros, años de lanzamiento y duración.
+
+
+## Link base de datos
+https://www.kaggle.com/datasets/shivamb/netflix-shows
 
 
 
