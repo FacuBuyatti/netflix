@@ -22,7 +22,7 @@ https://github.com/FacuBuyatti/netflix.git
 ## Diagrama de Entidad - Relación
 Diagrama Entidad Relación de la base de datos
 
-![Diagrama ER](diagrama.png)
+![Diagrama ER](netflix_db.png)
 
 ## Explicación sobre Normalización Realizada
 
