@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Datos Netflix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #000000 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+
+        /* Estadísticas */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #363636 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* Filtros */
+        .filtros {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .filtros h2 {
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .btn-limpiar {
+            background: #dc3545;
+        }
+
+        .btn-limpiar:hover {
+            background: #c82333;
+        }
+
+        /* Resultados */
+        .total {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .resultados {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .card .tipo {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .card p {
+            color: #666;
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .ver-mas {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .ver-mas:hover {
+            background: #764ba2;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Base de Datos Netflix</h1>
+
+        <!-- Estadísticas -->
+        {% if stats %}
+        <!-- <div class="stats">
+            <div class="stat-card">
+                <h3>{{ stats.total_contenido }}</h3>
+                <p>Total</p>
+            </div>
+            <div class="stat-card">
+                <h3>{{ stats.total_peliculas }}</h3>
+                <p>Películas</p>
+            </div>
+            <div class="stat-card">
+                <h3>{{ stats.total_series }}</h3>
+                <p>Series</p>
+            </div>
+            <div class="stat-card">
+                <h3>{{ stats.total_directores }}</h3>
+                <p>Directores</p>
+            </div>
+            <div class="stat-card">
+                <h3>{{ stats.total_actores }}</h3>
+                <p>Actores</p>
+            </div>
+            <div class="stat-card">
+                <h3>{{ stats.total_generos }}</h3>
+                <p>Géneros</p>
+            </div>
+        </div> -->
+        {% endif %}
+
+        <!-- Filtros -->
+        <div class="filtros">
+            <h2> Filtrar Contenido</h2>
+            <form method="GET">
+                <div class="form-grid">
+                    <input type="text" name="busqueda" placeholder="Buscar por título..." value="{{ busqueda }}">
+                    
+                    <select name="tipo">
+                        <option value="">Todos los tipos</option>
+                        <option value="Movie" {% if tipo == 'Movie' %}selected{% endif %}>Películas</option>
+                        <option value="TV Show" {% if tipo == 'TV Show' %}selected{% endif %}>Series</option>
+                    </select>
+                    
+                    <select name="genero">
+                        <option value="">Todos los géneros</option>
+                        {% for g in generos_lista %}
+                        <option value="{{ g }}" {% if genero == g %}selected{% endif %}>{{ g }}</option>
+                        {% endfor %}
+                    </select>
+                    
+                    <select name="anio">
+                        <option value="">Todos los años</option>
+                        {% for a in anios %}
+                        <option value="{{ a }}" {% if anio == a|string %}selected{% endif %}>{{ a }}</option>
+                        {% endfor %}
+                    </select>
+                    
+                    <select name="rating">
+                        <option value="">Todos los ratings</option>
+                        {% for r in ratings %}
+                        <option value="{{ r }}" {% if rating == r %}selected{% endif %}>{{ r }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <button type="submit">Buscar</button>
+                <a href="/" style="text-decoration: none;">
+                    <button type="button" class="btn-limpiar">Limpiar Filtros</button>
+                </a>
+            </form>
+        </div>
+
+        <!-- Total de resultados -->
+        <!-- <div class="total">
+            📊 Mostrando {{ contenido|length }} resultados
+        </div> -->
+
+        <!-- Resultados -->
+        <div class="resultados">
+            {% if contenido %}
+                {% for item in contenido %}
+                <div class="card">
+                    <span class="tipo">{{ item.type }}</span>
+                    <h3>{{ item.title }}</h3>
+                    <p>📅 <strong>Año:</strong> {{ item.release_year or 'N/A' }}</p>
+                    <p>⭐ <strong>Rating:</strong> {{ item.rating or 'N/A' }}</p>
+                    <p>⏱️ <strong>Duración:</strong> {{ item.duration or 'N/A' }}</p>
+                    <!-- <a href="/detalle/{{ item.show_id }}" class="ver-mas">Ver detalles →</a> -->
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-results">
+                    😕 No se encontraron resultados con los filtros seleccionados
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

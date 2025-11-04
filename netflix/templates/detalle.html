@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ contenido.title }} - Detalle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            background: #764ba2;
+            transform: translateX(-5px);
+        }
+
+        .type-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            line-height: 1.3;
+        }
+
+        .info-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #667eea;
+            min-width: 150px;
+            font-size: 1.1em;
+        }
+
+        .info-value {
+            color: #333;
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .description {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            line-height: 1.8;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .description h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .list-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .list-item {
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="container">
+        <a href="/" class="btn-back">← Volver al inicio</a>
+        
+        {% if contenido %}
+            <span class="type-badge">{{ contenido.type }}</span>
+            <h1>{{ contenido.title }}</h1>
+            
+            <div class="info-section">
+                <div class="info-row">
+                    <div class="info-label">📅 Año de lanzamiento:</div>
+                    <div class="info-value">{{ contenido.release_year or 'No disponible' }}</div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">⭐ Rating:</div>
+                    <div class="info-value">{{ contenido.rating or 'No disponible' }}</div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">⏱️ Duración:</div>
+                    <div class="info-value">{{ contenido.duration or 'No disponible' }}</div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">📆 Fecha agregado:</div>
+                    <div class="info-value">{{ contenido.date_added or 'No disponible' }}</div>
+                </div>
+                
+                {% if directores %}
+                <div class="info-row">
+                    <div class="info-label">🎬 Directores:</div>
+                    <div class="info-value">
+                        <div class="list-items">
+                            {% for director in directores %}
+                            <span class="list-item">{{ director.nombre }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if actores %}
+                <div class="info-row">
+                    <div class="info-label">🎭 Actores:</div>
+                    <div class="info-value">
+                        <div class="list-items">
+                            {% for actor in actores %}
+                            <span class="list-item">{{ actor.nombre }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if paises %}
+                <div class="info-row">
+                    <div class="info-label">🌍 Países:</div>
+                    <div class="info-value">
+                        <div class="list-items">
+                            {% for pais in paises %}
+                            <span class="list-item">{{ pais.nombre }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if generos %}
+                <div class="info-row">
+                    <div class="info-label">🎪 Géneros:</div>
+                    <div class="info-value">
+                        <div class="list-items">
+                            {% for genero in generos %}
+                            <span class="list-item">{{ genero.nombre }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            {% if contenido.description %}
+            <div class="description">
+                <h2>📖 Descripción</h2>
+                <p>{{ contenido.description }}</p>
+            </div>
+            {% endif %}
+            
+        {% else %}
+            <p>Contenido no encontrado</p>
+        {% endif %}
+    </div> -->
+</body>
+</html> 
